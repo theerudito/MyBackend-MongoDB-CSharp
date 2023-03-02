@@ -1,4 +1,4 @@
-using MongoDB.Bson;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using MyBackend_MongoDB_CSharp.Data;
 using MyBackend_MongoDB_CSharp.Models;
@@ -8,31 +8,39 @@ namespace MyBackend_MongoDB_CSharp.Repositories
 {
   public class ClientsRepositories : IClientsRepositories
   {
-    MongoDbSettings mongoDbSettings = new MongoDbSettings();
+    private readonly IMongoCollection<Clients> usersCollections;
+
+
+    public ClientsRepositories(IOptions<DataBaseSetting> databaseSettings)
+    {
+      var client = new MongoClient(databaseSettings.Value.ConnectionString);
+      var database = client.GetDatabase(databaseSettings.Value.MongoDB_Name);
+      usersCollections = database.GetCollection<Clients>(databaseSettings.Value.MongoDB_Collection_One);
+    }
 
     public async Task CreateClient(Clients client)
     {
-      await mongoDbSettings.collectionClient.InsertOneAsync(client);
+      await usersCollections.InsertOneAsync(client);
     }
 
     public async Task DeleteClient(string id)
     {
-      await mongoDbSettings.collectionClient.DeleteOneAsync(client => client.Id == id);
+      await usersCollections.DeleteOneAsync(client => client.Id == id);
     }
 
     public async Task<IEnumerable<Clients>> GetAllClients()
     {
-      return await mongoDbSettings.collectionClient.Find(new BsonDocument()).ToListAsync();
+      return await usersCollections.Find(client => true).ToListAsync();
     }
 
     public async Task<Clients> GetClientById(string id)
     {
-      return await mongoDbSettings.collectionClient.FindSync(client => client.Id == id).FirstOrDefaultAsync();
+      return await usersCollections.Find(client => client.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<Clients> UpdateClient(string id, Clients client)
     {
-      await mongoDbSettings.collectionClient.ReplaceOneAsync(client => client.Id == id, client);
+      await usersCollections.ReplaceOneAsync(client => client.Id == id, client);
       return client;
     }
   }

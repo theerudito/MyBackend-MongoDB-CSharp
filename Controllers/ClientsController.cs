@@ -9,9 +9,7 @@ namespace MyBackend_MongoDB_CSharp.Controllers
   [ApiController]
   public class ClientsController : Controller
   {
-
-    IClientsRepositories clientsRepositories = new ClientsRepositories();
-
+    private readonly IClientsRepositories clientsRepositories;
     [HttpGet]
     public async Task<ActionResult<List<Clients>>> Get()
     {

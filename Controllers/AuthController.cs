@@ -2,14 +2,12 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using MyBackend_MongoDB_CSharp.Data;
 using MyBackend_MongoDB_CSharp.Models;
 using MyBackend_MongoDB_CSharp.Models.DTOs;
-using MyBackend_MongoDB_CSharp.Repositories;
-using MyBackend_MongoDB_CSharp.Service;
 
 namespace MyBackend_MongoDB_CSharp.Controllers
 {
@@ -19,17 +17,19 @@ namespace MyBackend_MongoDB_CSharp.Controllers
   {
 
     private readonly IConfiguration config;
-    MongoDbSettings mongoDbSettings = new MongoDbSettings();
-    public AuthController(IConfiguration config)
+    private readonly IMongoCollection<Auth> authCollections;
+    public AuthController(IConfiguration config, IOptions<DataBaseSetting> databaseSettings)
     {
       this.config = config;
+      var client = new MongoClient(databaseSettings.Value.ConnectionString);
+      var database = client.GetDatabase(databaseSettings.Value.MongoDB_Name);
+      authCollections = database.GetCollection<Auth>(databaseSettings.Value.MongoDB_Collection_Two);
     }
-
 
     [HttpGet]
     public async Task<ActionResult> Get()
     {
-      var result = await mongoDbSettings.collectionAuth.Find(new BsonDocument()).ToListAsync();
+      var result = await authCollections.Find(auth => true).ToListAsync();
       return Ok(result);
     }
 
@@ -39,7 +39,7 @@ namespace MyBackend_MongoDB_CSharp.Controllers
       // search if email exists
       var filter = Builders<Auth>.Filter.Eq("email", userDTO.Email);
 
-      var result = await mongoDbSettings.collectionAuth.Find(filter).FirstOrDefaultAsync();
+      var result = await authCollections.Find(filter).FirstOrDefaultAsync();
 
       if (result == null)
       {
@@ -78,7 +78,7 @@ namespace MyBackend_MongoDB_CSharp.Controllers
     {
       var filter = Builders<Auth>.Filter.Eq("email", auth.Email);
 
-      var result = await mongoDbSettings.collectionAuth.Find(filter).FirstOrDefaultAsync();
+      var result = await authCollections.Find(filter).FirstOrDefaultAsync();
 
       if (result != null)
       {
@@ -90,11 +90,9 @@ namespace MyBackend_MongoDB_CSharp.Controllers
 
       // save user
 
-      await mongoDbSettings.collectionAuth.InsertOneAsync(auth);
+      await authCollections.InsertOneAsync(auth);
 
       return Ok(new { message = "User created" });
     }
-
-
   }
 }

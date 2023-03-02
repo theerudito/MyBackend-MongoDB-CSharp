@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "qEjUI4pjGafrlDtpjqZUZhl6mo8HD6I31wzI59vU+M8=",
+  "Source": "MyBackend-MongoDB-CSharp",
+  "BasePath": "_content/MyBackend-MongoDB-CSharp",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

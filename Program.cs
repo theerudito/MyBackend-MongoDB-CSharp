@@ -1,21 +1,22 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using MyBackend_MongoDB_CSharp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// añadir la configuración de la base de datos de mongo
+builder.Services.Configure<DataBaseSetting>(builder.Configuration.GetSection("MongoDatabase"));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// añadir la configuración de la base de datos de mongo
-// builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(nameof(MongoDbSettings)));
-// builder.Services.AddSingleton<IMongoDbSettings>(sp => (IMongoDbSettings)sp.GetRequiredService<IOptions<MongoDbSettings>>().Value);
 
 
+// config de jwt
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
   options.RequireHttpsMetadata = false;
@@ -32,6 +33,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
   };
 });
 
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
