@@ -9,39 +9,47 @@ namespace MyBackend_MongoDB_CSharp.Controllers
   [ApiController]
   public class ClientsController : Controller
   {
-    private readonly IClientsRepositories clientsRepositories;
-    [HttpGet]
-    public async Task<ActionResult<List<Clients>>> Get()
+
+    private readonly IClientsRepositories _clientsRepositories;
+    //private readonly ClientsRepositories _clientsRepositories;
+
+    public ClientsController(IClientsRepositories clientsRepositories)
     {
-      var clients = await clientsRepositories.GetAllClients();
+      _clientsRepositories = clientsRepositories;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<List<Clients>>> GetAll()
+    {
+      var clients = await _clientsRepositories.GetAllClients();
       return Ok(clients);
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Clients>> Get(string id)
     {
-      var client = await clientsRepositories.GetClientById(id);
+      var client = await _clientsRepositories.GetClientById(id);
       return Ok(client);
     }
 
     [HttpPost]
     public async Task<ActionResult<Clients>> Post([FromBody] Clients client)
     {
-      await clientsRepositories.CreateClient(client);
+      await _clientsRepositories.CreateClient(client);
       return Ok(new { message = "Client created" });
     }
 
     [HttpPut("{id}")]
     public async Task<ActionResult<Clients>> Put(Clients client, string id)
     {
-      await clientsRepositories.UpdateClient(id, client);
+      await _clientsRepositories.UpdateClient(id, client);
       return Ok(new { message = "Client updated" });
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(string id)
     {
-      await clientsRepositories.DeleteClient(id);
+      await _clientsRepositories.DeleteClient(id);
       return Ok(new { message = "Client deleted" });
     }
   }

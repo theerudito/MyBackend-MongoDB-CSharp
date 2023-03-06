@@ -9,6 +9,7 @@ using MyBackend_MongoDB_CSharp.Data;
 using MyBackend_MongoDB_CSharp.Models;
 using MyBackend_MongoDB_CSharp.Models.DTOs;
 
+
 namespace MyBackend_MongoDB_CSharp.Controllers
 {
   [Route("[controller]")]
@@ -46,6 +47,7 @@ namespace MyBackend_MongoDB_CSharp.Controllers
         return BadRequest("The user does not exist");
       }
 
+      //if (!BCrypt.Net.BCrypt.Verify(userDTO.Password, result.Password))
       // compare password
       if (!BCrypt.Net.BCrypt.Verify(userDTO.Password, result.Password))
       {

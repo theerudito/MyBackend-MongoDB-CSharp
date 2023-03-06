@@ -9,9 +9,7 @@ namespace MyBackend_MongoDB_CSharp.Repositories
   public class ClientsRepositories : IClientsRepositories
   {
     private readonly IMongoCollection<Clients> usersCollections;
-
-
-    public ClientsRepositories(IOptions<DataBaseSetting> databaseSettings)
+    public ClientsRepositories(IConfiguration config, IOptions<DataBaseSetting> databaseSettings)
     {
       var client = new MongoClient(databaseSettings.Value.ConnectionString);
       var database = client.GetDatabase(databaseSettings.Value.MongoDB_Name);
@@ -28,7 +26,7 @@ namespace MyBackend_MongoDB_CSharp.Repositories
       await usersCollections.DeleteOneAsync(client => client.Id == id);
     }
 
-    public async Task<IEnumerable<Clients>> GetAllClients()
+    public async Task<List<Clients>> GetAllClients()
     {
       return await usersCollections.Find(client => true).ToListAsync();
     }
