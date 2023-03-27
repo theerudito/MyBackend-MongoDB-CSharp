@@ -19,6 +19,7 @@ namespace MyBackend_MongoDB_CSharp.Controllers
 
     private readonly IConfiguration config;
     private readonly IMongoCollection<Auth> authCollections;
+
     public AuthController(IConfiguration config, IOptions<DataBaseSetting> databaseSettings)
     {
       this.config = config;

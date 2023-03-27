@@ -60,16 +60,16 @@
           }
         }
       },
-      "BCrypt.Net/0.1.0": {
+      "BCrypt.Net-Next/4.0.3": {
         "type": "package",
         "compile": {
-          "lib/net35/BCrypt.Net.dll": {
-            "related": ".XML"
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net35/BCrypt.Net.dll": {
-            "related": ".XML"
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
           }
         }
       },
@@ -792,17 +792,35 @@
         "tools/uninstall.ps1"
       ]
     },
-    "BCrypt.Net/0.1.0": {
-      "sha512": "sST2w361Dxt9GGMfpOTiK50wXGV64Ybb1hiX3xjEWnhVYZNF43NuySGwADJa7X1R+bA53NsFR+tuDxcYiJeIOA==",
+    "BCrypt.Net-Next/4.0.3": {
+      "sha512": "W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
       "type": "package",
-      "path": "bcrypt.net/0.1.0",
+      "path": "bcrypt.net-next/4.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "bcrypt.net.0.1.0.nupkg.sha512",
-        "bcrypt.net.nuspec",
-        "lib/net35/BCrypt.Net.XML",
-        "lib/net35/BCrypt.Net.dll"
+        "bcrypt.net-next.4.0.3.nupkg.sha512",
+        "bcrypt.net-next.nuspec",
+        "ico.png",
+        "lib/net20/BCrypt.Net-Next.dll",
+        "lib/net20/BCrypt.Net-Next.xml",
+        "lib/net35/BCrypt.Net-Next.dll",
+        "lib/net35/BCrypt.Net-Next.xml",
+        "lib/net462/BCrypt.Net-Next.dll",
+        "lib/net462/BCrypt.Net-Next.xml",
+        "lib/net472/BCrypt.Net-Next.dll",
+        "lib/net472/BCrypt.Net-Next.xml",
+        "lib/net48/BCrypt.Net-Next.dll",
+        "lib/net48/BCrypt.Net-Next.xml",
+        "lib/net5.0/BCrypt.Net-Next.dll",
+        "lib/net5.0/BCrypt.Net-Next.xml",
+        "lib/net6.0/BCrypt.Net-Next.dll",
+        "lib/net6.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.0/BCrypt.Net-Next.dll",
+        "lib/netstandard2.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.1/BCrypt.Net-Next.dll",
+        "lib/netstandard2.1/BCrypt.Net-Next.xml",
+        "readme.md"
       ]
     },
     "DnsClient/1.6.1": {
@@ -2131,7 +2149,7 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.0",
-      "BCrypt.Net >= 0.1.0",
+      "BCrypt.Net-Next >= 4.0.3",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.3",
       "Microsoft.AspNetCore.OpenApi >= 7.0.2",
       "MongoDB.Driver >= 2.19.0",
@@ -2141,25 +2159,22 @@
   },
   "packageFolders": {
     "C:\\Users\\ewine\\.nuget\\packages\\": {},
-    "C:\\Users\\ewine\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ewine\\OneDrive\\Escritorio\\asp\\MyBackend-MongoDB-CSharp\\MyBackend-MongoDB-CSharp.csproj",
+      "projectUniqueName": "C:\\Users\\ewine\\source\\repos\\API-REST\\MyBackend-MongoDB-CSharp\\MyBackend-MongoDB-CSharp.csproj",
       "projectName": "MyBackend-MongoDB-CSharp",
-      "projectPath": "C:\\Users\\ewine\\OneDrive\\Escritorio\\asp\\MyBackend-MongoDB-CSharp\\MyBackend-MongoDB-CSharp.csproj",
+      "projectPath": "C:\\Users\\ewine\\source\\repos\\API-REST\\MyBackend-MongoDB-CSharp\\MyBackend-MongoDB-CSharp.csproj",
       "packagesPath": "C:\\Users\\ewine\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ewine\\OneDrive\\Escritorio\\asp\\MyBackend-MongoDB-CSharp\\obj\\",
+      "outputPath": "C:\\Users\\ewine\\source\\repos\\API-REST\\MyBackend-MongoDB-CSharp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Users\\ewine\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\ewine\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Users\\ewine\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2169,7 +2184,7 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "F:\\Paquetes": {},
+        "C:\\Users\\ewine\\OneDrive\\Documentos\\Paquete": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2192,9 +2207,9 @@
             "target": "Package",
             "version": "[12.0.0, )"
           },
-          "BCrypt.Net": {
+          "BCrypt.Net-Next": {
             "target": "Package",
-            "version": "[0.1.0, )"
+            "version": "[4.0.3, )"
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
@@ -2236,20 +2251,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'BCrypt.Net 0.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "BCrypt.Net",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    }
-  ]
+  }
 }
