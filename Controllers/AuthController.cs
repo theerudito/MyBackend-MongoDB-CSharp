@@ -48,7 +48,6 @@ namespace MyBackend_MongoDB_CSharp.Controllers
         return BadRequest("The user does not exist");
       }
 
-      //if (!BCrypt.Net.BCrypt.Verify(userDTO.Password, result.Password))
       // compare password
       if (!BCrypt.Net.BCrypt.Verify(userDTO.Password, result.Password))
       {
