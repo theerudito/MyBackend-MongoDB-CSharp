@@ -2164,11 +2164,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ewine\\source\\repos\\API-REST\\MyBackend-MongoDB-CSharp\\MyBackend-MongoDB-CSharp.csproj",
-      "projectName": "MyBackend-MongoDB-CSharp",
-      "projectPath": "C:\\Users\\ewine\\source\\repos\\API-REST\\MyBackend-MongoDB-CSharp\\MyBackend-MongoDB-CSharp.csproj",
+      "projectUniqueName": "C:\\Users\\ewine\\source\\repos\\API-REST\\MyBackend_MongoDB_CSharp\\MyBackend_MongoDB_CSharp.csproj",
+      "projectName": "MyBackend_MongoDB_CSharp",
+      "projectPath": "C:\\Users\\ewine\\source\\repos\\API-REST\\MyBackend_MongoDB_CSharp\\MyBackend_MongoDB_CSharp.csproj",
       "packagesPath": "C:\\Users\\ewine\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ewine\\source\\repos\\API-REST\\MyBackend-MongoDB-CSharp\\obj\\",
+      "outputPath": "C:\\Users\\ewine\\source\\repos\\API-REST\\MyBackend_MongoDB_CSharp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

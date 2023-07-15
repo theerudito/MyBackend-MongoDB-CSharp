@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "dP5dIBTfRR9Qw/SMmjJNnp+D6GK+kOu4/t1o6YG+MTY=",
-  "Source": "MyBackend-MongoDB-CSharp",
-  "BasePath": "_content/MyBackend-MongoDB-CSharp",
+  "Hash": "bZbxiLw4AP1tqPy16KBbsx4FyTC9so7f2DvoF5fcYEs=",
+  "Source": "MyBackend_MongoDB_CSharp",
+  "BasePath": "_content/MyBackend_MongoDB_CSharp",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

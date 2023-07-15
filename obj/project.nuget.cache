@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZI3QoTB452WqCHpQY0U1YlJicQoAnBu4wEk/xH06KQOr9TTrKWupQDhotO9pDQ5SheLzUb7Q/ZldtQKZfpNsbg==",
+  "dgSpecHash": "2lQPsoBoM692lSFlF7BbiZnpG7hykBhsAPWHdLTO+iL8QjYjHCSMf8edwhBFdIzndJsWGOmtoWCuE0qTW1xk0w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ewine\\source\\repos\\API-REST\\MyBackend-MongoDB-CSharp\\MyBackend-MongoDB-CSharp.csproj",
+  "projectFilePath": "C:\\Users\\ewine\\source\\repos\\API-REST\\MyBackend_MongoDB_CSharp\\MyBackend_MongoDB_CSharp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ewine\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\ewine\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

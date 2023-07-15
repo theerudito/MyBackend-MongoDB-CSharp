@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MyBackend_MongoDB_CSharp.props" />
+</Project>

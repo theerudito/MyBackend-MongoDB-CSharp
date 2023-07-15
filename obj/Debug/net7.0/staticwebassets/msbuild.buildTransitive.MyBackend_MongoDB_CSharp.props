@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\MyBackend_MongoDB_CSharp.props" />
+</Project>
