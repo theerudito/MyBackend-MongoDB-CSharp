@@ -1,4 +1,5 @@
 {
   "schemaVersion": 2,
-  "templateId": "./DockerFile"
+  "description": "A simple Dockerfile template",
+  "mainTemplate": "./Dockerfile"
 }
