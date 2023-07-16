@@ -4,6 +4,8 @@ WORKDIR /app
 
 # Copiar los archivos de la solución 
 COPY ./*.csproj ./
+COPY ./*Dockerfile ./
+COPY ./*captian-definition ./
 
 # Restaurar las dependencias
 RUN dotnet restore
