@@ -1,23 +1,25 @@
-
-#Start with the base .NET SDK Image
+# Etapa de construcción
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
-
-#Set the working directory inside the container
 WORKDIR /app
 
-#Copy the project files and restore the depencies
-COPY *.csproj ./
+# Copiar los archivos de la solución y restaurar las dependencias
+COPY ./*.sln ./
+COPY ./*.csproj ./
+
+
+# Restaurar las dependencias
 RUN dotnet restore
 
-#Copy the remainign files and build the application
+# Copiar todo el código fuente y compilar la aplicación
 COPY . ./
 RUN dotnet publish -c Release -o out
 
-#Build the runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime-env
+# Etapa de tiempo de ejecución
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app
 COPY --from=build-env /app/out .
 
 #set entry point 
 ENTRYPOINT ["dotnet", "MyBackend_MongoDB_CSharp.dll"]
+
 
