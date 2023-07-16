@@ -5,6 +5,7 @@ WORKDIR /app
 # Copiar los archivos de la solución y restaurar las dependencias
 COPY ./*.sln ./
 COPY ./*.csproj ./
+#COPY ./Store.Backend/*.csproj ./Store.Backend/
 
 
 # Restaurar las dependencias
