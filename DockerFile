@@ -2,8 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
 WORKDIR /app
 
-# Copiar los archivos de la solución y restaurar las dependencias
-COPY ./*.sln ./
+# Copiar los archivos de la solución 
 COPY ./*.csproj ./
 
 # Restaurar las dependencias
