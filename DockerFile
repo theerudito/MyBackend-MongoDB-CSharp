@@ -1,21 +1,31 @@
-# Etapa de construcción
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
+# Utiliza una imagen base de .NET 7
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+
+# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar los archivos de la solución 
+# Copia los archivos de tu aplicación al directorio de trabajo en el contenedor
 COPY ./*.csproj ./
 
-# Restaurar las dependencias
+# Restaura las dependencias y compila el proyecto
 RUN dotnet restore
-
-# Copiar todo el código fuente y compilar la aplicación
 COPY . ./
-RUN dotnet publish -c Release -o out
+RUN dotnet publish -c Release -o /app/out
 
-# Etapa de tiempo de ejecución
-FROM mcr.microsoft.com/dotnet/aspnet:7.0
+# Crea una imagen de producción más pequeña
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+
+# Establece el directorio de trabajo en la imagen de producción
 WORKDIR /app
-COPY --from=build-env /app/out .
+
+# Copia los archivos publicados desde la etapa de compilación
+COPY --from=build /app/out .
+
+# Copia el archivo Dockerfile al directorio de trabajo en la imagen de producción
+COPY Dockerfile .
+
+# Expone el puerto en el que tu aplicación está escuchando
+EXPOSE 80
 
 #set entry point 
 ENTRYPOINT ["dotnet", "MyBackend_MongoDB_CSharp.dll"]
