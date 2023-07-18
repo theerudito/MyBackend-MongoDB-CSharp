@@ -16,7 +16,6 @@ WORKDIR /app
 
 COPY --from=build /app/out .
 
-COPY Dockerfile .
 
 EXPOSE 80
 
