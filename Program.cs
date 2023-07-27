@@ -8,46 +8,53 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// añadir la configuración de la base de datos de mongo
-builder.Services.Configure<DataBaseSetting>(builder.Configuration.GetSection("MongoDatabase"));
+
 builder.Services.AddScoped<IClientsRepositories, ClientsRepositories>();
 
-var proveedor = builder.Services.BuildServiceProvider();
-var config = proveedor.GetRequiredService<IConfiguration>();
+
+builder.Services.Configure<DataBaseSetting>(options =>
+{
+    options.ConnectionString = builder.Configuration.GetSection("MongoDatabase:ConnectionString").Value!;
+    options.MongoDB_Name = builder.Configuration.GetSection("MongoDatabase:MongoDB_Name").Value!;
+    options.MongoDB_Collection_One = builder.Configuration.GetSection("MongoDatabase:MongoDB_Collection_One").Value!;
+    options.MongoDB_Collection_Two = builder.Configuration.GetSection("MongoDatabase:MongoDB_Collection_Two").Value!;
+});
+
+var fontendUrl = builder.Configuration.GetSection("MyFrontend").Value;
 
 builder.Services.AddCors(options =>
 {
-    var fontendUrl = config.GetValue<string>("MyFrontend");
-
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins(fontendUrl)
-      .AllowAnyMethod()
-      .AllowAnyHeader();
+        builder.WithOrigins(fontendUrl!).AllowAnyMethod().AllowAnyHeader();
     });
 });
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // config de jwt
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-{
-    options.RequireHttpsMetadata = false;
-    options.SaveToken = true;
-    options.TokenValidationParameters = new TokenValidationParameters()
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Token"]))
-    };
-});
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Token"]!)
+            )
+        };
+    });
 
 builder.Services.AddAutoMapper(typeof(Program));
 

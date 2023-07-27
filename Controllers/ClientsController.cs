@@ -1,17 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using MyBackend_MongoDB_CSharp.Models;
-using MyBackend_MongoDB_CSharp.Repositories;
 using MyBackend_MongoDB_CSharp.Service;
 
 namespace MyBackend_MongoDB_CSharp.Controllers
 {
-  [Route("[controller]")]
+  [Route("api/v1/[controller]")]
   [ApiController]
   public class ClientsController : Controller
   {
 
     private readonly IClientsRepositories _clientsRepositories;
-    //private readonly ClientsRepositories _clientsRepositories;
 
     public ClientsController(IClientsRepositories clientsRepositories)
     {
